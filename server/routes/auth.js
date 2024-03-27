@@ -1,13 +1,13 @@
 const express = require("express");
-const User = require("../models/user")
+const User = require("../models/user");
 
 const authRouter = express.Router();
 
-authRouter.post("/api/signup", async(req, res) => {
+authRouter.post("/api/signup", async (req, res) => {
   try {
-    const {name, email, profileImg} = req.body;
-    let user = User.findOne({email: email});
-    if(user != null){
+    const { name, email, profileImg } = req.body;
+    let user = User.findOne({ email: email });
+    if (user != null) {
       user = new User({
         name: name,
         email: email,
@@ -16,8 +16,10 @@ authRouter.post("/api/signup", async(req, res) => {
       user = await user.save();
     }
 
-    res.json({user: user});
-  } catch (e) {}
+    res.status(200).json({ user: user });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
 });
 
 module.exports = authRouter;

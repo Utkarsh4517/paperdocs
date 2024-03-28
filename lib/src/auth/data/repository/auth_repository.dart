@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart';
-import 'package:logger/logger.dart';
 import 'package:paperdocs/constants/url.dart';
 import 'package:paperdocs/data/models/error_model.dart';
 import 'package:paperdocs/data/models/user_model.dart';

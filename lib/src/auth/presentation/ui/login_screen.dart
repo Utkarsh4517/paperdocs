@@ -7,8 +7,12 @@ import 'package:paperdocs/src/auth/data/repository/auth_repository.dart';
 class LoginScreen extends ConsumerWidget {
   const LoginScreen({super.key});
 
-  void signInWithGoogle(WidgetRef ref) {
-    ref.read(authRepositoryProvider).signInWithGoogle();
+  void signInWithGoogle(WidgetRef ref, BuildContext context) async {
+    final smg = ScaffoldMessenger.of(context);
+    final errorModel = await ref.read(authRepositoryProvider).signInWithGoogle();
+    if (errorModel.error == null) {
+      smg.showSnackBar(SnackBar(content: Text(errorModel.error!)));
+    }
   }
 
   @override
@@ -25,7 +29,7 @@ class LoginScreen extends ConsumerWidget {
               MUISecondaryButton(
                 text: 'Google',
                 onPressed: () async {
-                  signInWithGoogle(ref);
+                  signInWithGoogle(ref, context);
                 },
                 leadingIcon: FontAwesomeIcons.google,
               ),

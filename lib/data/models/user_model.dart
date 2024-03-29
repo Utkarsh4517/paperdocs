@@ -3,13 +3,13 @@ import 'dart:convert';
 class UserModel {
   final String name;
   final String email;
-  final String imageUrl;
+  final String profileImg;
   final String uid;
   final String token;
   UserModel({
     required this.name,
     required this.email,
-    required this.imageUrl,
+    required this.profileImg,
     required this.uid,
     required this.token,
   });
@@ -18,7 +18,7 @@ class UserModel {
     return {
       'name': name,
       'email': email,
-      'imageUrl': imageUrl,
+      'profileImg': profileImg,
       'uid': uid,
       'token': token,
     };
@@ -28,8 +28,8 @@ class UserModel {
     return UserModel(
       name: map['name'] ?? '',
       email: map['email'] ?? '',
-      imageUrl: map['imageUrl'] ?? '',
-      uid: map['uid'] ?? '',
+      profileImg: map['profileImg'] ?? '',
+      uid: map['_id'] ?? '',
       token: map['token'] ?? '',
     );
   }
@@ -41,14 +41,14 @@ class UserModel {
   UserModel copyWith({
     String? name,
     String? email,
-    String? imageUrl,
+    String? profileImg,
     String? uid,
     String? token,
   }) {
     return UserModel(
       name: name ?? this.name,
       email: email ?? this.email,
-      imageUrl: imageUrl ?? this.imageUrl,
+      profileImg: profileImg ?? this.profileImg,
       uid: uid ?? this.uid,
       token: token ?? this.token,
     );

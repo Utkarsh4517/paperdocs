@@ -18,7 +18,9 @@ authRouter.post("/api/signup", async (req, res) => {
 
     res.status(200).json({ user: user });
   } catch (e) {
+    console.log(e.message);
     res.status(500).json({ error: e.message });
+
   }
 });
 

@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart';
+import 'package:logger/logger.dart';
 import 'package:paperdocs/constants/url.dart';
 import 'package:paperdocs/data/models/error_model.dart';
 import 'package:paperdocs/data/models/user_model.dart';
@@ -28,11 +29,12 @@ class AuthRepository {
         final newUserAccount = UserModel(
           name: user.displayName!,
           email: user.email,
-          imageUrl: user.photoUrl!,
+          profileImg: user.photoUrl!,
           uid: '',
           token: '',
         );
         final result = await _client.post(Uri.parse('$host/api/signup'), body: newUserAccount.toJson(), headers: {'Content-type': 'application/json; charset=UTF-8'});
+        Logger(printer: PrettyPrinter()).d(result.statusCode);
         switch (result.statusCode) {
           case 200:
             final newUser = newUserAccount.copyWith(uid: jsonDecode(result.body)['user']['_id']);

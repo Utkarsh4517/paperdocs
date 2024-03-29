@@ -1,19 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:paperdocs/src/auth/data/repository/auth_repository.dart';
 
-
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
+  Widget build(BuildContext context, WidgetRef ref) {
+    return Scaffold(
       body: Center(
-        child: Text('Home Screen'),
+        child: Text('Home Screen at ${ref.watch(userProvider)!.uid}'),
       ),
     );
   }

@@ -37,7 +37,10 @@ class AuthRepository {
         Logger(printer: PrettyPrinter()).d(result.statusCode);
         switch (result.statusCode) {
           case 200:
-            final newUser = newUserAccount.copyWith(uid: jsonDecode(result.body)['user']['_id']);
+            final newUser = newUserAccount.copyWith(
+              uid: jsonDecode(result.body)['user']['_id'],
+              token: jsonDecode(result.body)['token']
+            );
             errorModel = ErrorModel(error: null, data: newUser);
             break;
 

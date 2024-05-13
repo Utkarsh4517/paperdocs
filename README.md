@@ -1,6 +1,6 @@
-# paperdocs
+# paperdocs [UNFINISHED]
 
-A new Flutter project.
+Docs app using Flutter and Express JS.
 
 ## Getting Started
 
